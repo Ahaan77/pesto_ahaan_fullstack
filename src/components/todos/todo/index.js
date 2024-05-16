@@ -8,7 +8,7 @@ const Todo = ({ todo, fetchData }) => {
     const [status, setStatus] = useState(todo?.status)
     const [statusColor, setStatusColor] = useState(assignTodoColor(todo?.status))
 
-    
+
     const deleteTodo = async (id) => {
         try {
             const todoRef = doc(db, "todos", id);
@@ -40,7 +40,7 @@ const Todo = ({ todo, fetchData }) => {
 
     return (
         <div id={todo?.id} className='flex justify-center'>
-            <div style={{ zIndex: 9990 }} className={`w-full lg:w-3/4 mb-10 bg-[#181622] border-2 border-${statusColor} border-opacity-30 rounded-xl`}>
+            <div style={{ zIndex: 9990, border:`0.4px solid ${statusColor}`}} className={`w-full lg:w-3/4 mb-10 bg-[#181622] rounded-xl`}>
                 <div className="flex items-center w-full">
                     <p className='text-xl lg:text-3xl text-white mt-5 ml-5 w-full'>{todo?.title}</p>
                     {/* <p className="text-white mt-5 flex justify-end text-sm w-full mr-5">{assignTodoColor(todo?.status)}</p> */}
