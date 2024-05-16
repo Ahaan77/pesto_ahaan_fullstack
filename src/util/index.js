@@ -1,12 +1,11 @@
 function assignTodoColor(status) {
     const statusClass = {
-        "Completed": "text-green-600",
-        "To-do": "text-red-400",
-        "In Progress": "text-orange-500"
+        "Completed": "green-500",
+        "To-do": "red-500",
+        "In-Progress": "yellow-500"
     };
 
-    const className = `font-bold ${statusClass[status] || ""}`;
-    return <p className={className}>{status}</p>;
+    return statusClass[status]
 }
 
 
