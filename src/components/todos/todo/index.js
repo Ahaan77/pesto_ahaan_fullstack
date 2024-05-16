@@ -52,7 +52,7 @@ const Todo = ({ todo, fetchData }) => {
                     </div>
 
                     {/* <p className="text-white mt-5 flex justify-end text-sm w-full mr-5">{assignTodoColor(todo?.status)}</p> */}
-                    <select style={{ width: "200px" }} onChange={handleStatusChange} className="lg:mt-0 mt-2 ml-2 lg:ml-0 lg:flex lg:justify-end text-sm w-full lg:mr-5 bg-transparent font-bold text-white px-2 py-2 rounded-xl" value={status}>
+                    <select style={{ width: "200px" }} onChange={handleStatusChange} className="lg:mt-0 mt-2 ml-2 lg:ml-0 lg:flex focus:outline-none lg:justify-end text-sm w-full lg:mr-5 bg-transparent font-bold text-white px-2 py-2 rounded-xl" value={status}>
                         <option value="To-do">To-do</option>
                         <option value="In-Progress">In Progress</option>
                         <option value="Completed">Completed</option>
