@@ -8,6 +8,7 @@ const Todo = ({ todo, fetchData }) => {
     const [status, setStatus] = useState(todo?.status)
     const [statusColor, setStatusColor] = useState(assignTodoColor(todo?.status))
 
+    
     const deleteTodo = async (id) => {
         try {
             const todoRef = doc(db, "todos", id);
