@@ -23,7 +23,6 @@ const Todo = ({ todo, fetchData }) => {
         try {
             const todoRef = doc(db, "todos", id);
             await updateDoc(todoRef, { status: newStatus });
-            setStatusColor(assignTodoColor(newStatus))
             fetchData();
         } catch (error) {
             console.error("Error updating document:", error);
@@ -32,6 +31,7 @@ const Todo = ({ todo, fetchData }) => {
 
     const handleStatusChange = async (e) => {
         const newStatus = e.target.value;
+        setStatusColor(assignTodoColor(newStatus))
         setStatus(newStatus);
         await updateTodo(todo?.id, newStatus);
     };
