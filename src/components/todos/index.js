@@ -1,35 +1,58 @@
-import { getFirestore, addDoc, collection, getDocs, deleteDoc, doc } from "firebase/firestore"
+import { getFirestore, addDoc, collection, getDocs, deleteDoc, doc,  query, where, onSnapshot } from "firebase/firestore"
 import { useEffect, useState } from 'react';
 import CreateButton from "../buttons";
 import Loader from "../loader";
 import Todo from "./todo";
+import { useAuth } from "../../context/AuthContext";
 
 const Todos = () => {
 
     const db = getFirestore();
+    const { currentUser } = useAuth();
     const [data, setData] = useState([])
     const [original, setOriginal] = useState([])
     const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         fetchData()
+        console.log("Yess", currentUser)
     }, [])
 
     const fetchData = async () => {
         try {
-            setLoading(true)
-            const todoRef = collection(db, 'todos');
-            let allTodos = await getDocs(todoRef);
 
-            let res = [];
+            if (currentUser) {
+                setLoading(true)
+                const userTodosRef = collection(db, 'todos', currentUser.uid, 'userTodos');
+                const q = query(userTodosRef);
+                onSnapshot(q, (querySnapshot) => {
+                    const todosData = [];
+                    querySnapshot.forEach((doc) => {
+                        todosData.push({ ...doc.data(), id: doc.id });
+                    });
+                    // setTodos(todosData);
+                    console.log(todosData)
+                    setData(todosData)
+                    setOriginal(todosData)
+                    setLoading(false)
+                });
 
-            allTodos.forEach((doc) => {
-                res.push({ id: doc.id, ...doc.data() });
-            })
 
-            setData(res)
-            setOriginal(res)
-            setLoading(false)
+                // const todoRef = collection(db, 'todos');
+                // let allTodos = await getDocs(todoRef);
+
+                // let res = [];
+
+                // allTodos.forEach((doc) => {
+                //     res.push({ id: doc.id, ...doc.data() });
+                // })
+
+                // console.log("res", res)
+
+                // setData(res)
+                // setOriginal(res)
+                // setLoading(false)
+            }
         } catch (err) {
             console.log("There was an error fetching data")
         }

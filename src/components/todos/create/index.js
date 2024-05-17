@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { addDoc, collection, getFirestore } from "firebase/firestore"
+import { useAuth } from "../../../context/AuthContext"
 
 
 const Create = () => {
@@ -9,17 +10,27 @@ const Create = () => {
     const [dateTime, setDateTime] = useState()
     const [success, setSuccess] = useState(false)
     const db = getFirestore();
+    const { currentUser } = useAuth();
 
     const addTodo = async () => {
         try {
             if (title.length !== 0 && content.length !== 0 && dateTime) { // Check if dateTime is not empty
-                const todoRef = await addDoc(collection(db, "todos"), {
+
+                const userTodosRef = collection(db, 'todos', currentUser.uid, 'userTodos');
+                await addDoc(userTodosRef, {
                     description: content,
                     status: 'To-do',
                     time: new Date().getTime(),
                     title: title,
-                    dateTime: dateTime // Include dateTime in the todo document
+                    dateTime: dateTime 
                 });
+                // const todoRef = await addDoc(collection(db, "todos"), {
+                //     description: content,
+                //     status: 'To-do',
+                //     time: new Date().getTime(),
+                //     title: title,
+                //     dateTime: dateTime // Include dateTime in the todo document
+                // });
                 setSuccess(true);
             } else {
                 console.log("Title, content, and dateTime are required");

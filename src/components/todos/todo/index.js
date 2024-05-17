@@ -3,19 +3,21 @@ import { useState } from "react";
 import { assignTodoColor, reverseTimer } from "../../../util";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
+import { useAuth } from "../../../context/AuthContext";
 
 const Todo = ({ todo, fetchData }) => {
 
     const db = getFirestore();
+    const { currentUser } = useAuth();
     const [status, setStatus] = useState(todo?.status)
     const [statusColor, setStatusColor] = useState(assignTodoColor(todo?.status))
 
 
     const deleteTodo = async (id) => {
         try {
-            const todoRef = doc(db, "todos", id);
+            const todoRef = doc(db, "todos", currentUser.uid, "userTodos", id);
             await deleteDoc(todoRef);
-            fetchData()
+            fetchData();  
         } catch (error) {
             console.error("Error deleting document:", error);
         }
@@ -23,9 +25,9 @@ const Todo = ({ todo, fetchData }) => {
 
     const updateTodo = async (id, newStatus) => {
         try {
-            const todoRef = doc(db, "todos", id);
+            const todoRef = doc(db, "todos", currentUser.uid, "userTodos", id);
             await updateDoc(todoRef, { status: newStatus });
-            fetchData();
+            fetchData();  
         } catch (error) {
             console.error("Error updating document:", error);
         }
@@ -37,8 +39,6 @@ const Todo = ({ todo, fetchData }) => {
         setStatus(newStatus);
         await updateTodo(todo?.id, newStatus);
     };
-
-
 
     return (
         <div id={todo?.id} className='flex justify-center'>
