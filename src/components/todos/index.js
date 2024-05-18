@@ -1,9 +1,9 @@
-import { getFirestore, addDoc, collection, getDocs, deleteDoc, doc,  query, where, onSnapshot } from "firebase/firestore"
+import { getFirestore, addDoc, collection, getDocs, deleteDoc, doc, query, where, onSnapshot } from "firebase/firestore"
 import { useEffect, useState } from 'react';
 import CreateButton from "../buttons";
-import Loader from "../loader";
 import Todo from "./todo";
 import { useAuth } from "../../context/AuthContext";
+import { getName } from "../../util";
 
 const Todos = () => {
 
@@ -15,7 +15,6 @@ const Todos = () => {
 
     useEffect(() => {
         fetchData()
-        console.log("Yess", currentUser)
     }, [])
 
     const fetchData = async () => {
@@ -36,22 +35,6 @@ const Todos = () => {
                     setOriginal(todosData)
                     setLoading(false)
                 });
-
-
-                // const todoRef = collection(db, 'todos');
-                // let allTodos = await getDocs(todoRef);
-
-                // let res = [];
-
-                // allTodos.forEach((doc) => {
-                //     res.push({ id: doc.id, ...doc.data() });
-                // })
-
-                // console.log("res", res)
-
-                // setData(res)
-                // setOriginal(res)
-                // setLoading(false)
             }
         } catch (err) {
             console.log("There was an error fetching data")
@@ -76,6 +59,9 @@ const Todos = () => {
     return (
         <>
             <div className='mt-9 lg:mt-10 mx-4 lg:mx-20 relative '>
+                <div className="w-full flex justify-center text-white mb-5 text-lg">
+                    <p>Welcome {getName(currentUser?.email) || ""},</p>
+                </div>
                 <div className="w-full flex justify-center">
                     <div className="mb-10 w-full lg:w-3/4">
                         <div className="lg:mt-0 mt-2  lg:ml-0 lg:flex lg:justify-end text-sm w-full lg:mr-5 bg-transparent font-bold text-white px-2 py-2 rounded-md border">

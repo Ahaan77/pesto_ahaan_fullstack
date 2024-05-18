@@ -23,7 +23,7 @@ function reverseTimer(endTimestamp) {
     const currentTimestamp = Date.now();
 
     const convertedStamp = dateToTimestamp(endTimestamp);
-    
+
     // Calculate the time difference in milliseconds
     const timeDifference = convertedStamp - currentTimestamp;
 
@@ -54,5 +54,12 @@ function reverseTimer(endTimestamp) {
     return timerString;
 }
 
+function getName(str) {
+    let a = str.split("");
+    let index = a.findIndex((item) => item === "@")
+     
+    return str.slice(0,index)
+}
 
-export { assignTodoColor, reverseTimer }
+
+export { assignTodoColor, reverseTimer, getName }
