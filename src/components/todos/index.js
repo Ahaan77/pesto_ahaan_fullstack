@@ -60,7 +60,7 @@ const Todos = () => {
         <>
             <div className='mt-9 lg:mt-10 mx-4 lg:mx-20 relative '>
                 <div className="w-full flex justify-center text-white mb-5 text-lg">
-                    <p>Welcome {getName(currentUser?.email) || ""},</p>
+                    <p>Welcome {getName(currentUser?.email) || ""} &#128075;</p>
                 </div>
                 <div className="w-full flex justify-center">
                     <div className="mb-10 w-full lg:w-3/4">
@@ -75,12 +75,18 @@ const Todos = () => {
                     </div>
                 </div>
 
-                {data?.map((todo) => {
-                    return (
-                        <Todo key={todo?.id} todo={todo} fetchData={fetchData} />
-                    )
-                })
-                }
+                {data.length > 0 &&
+                    <>
+                        {data?.map((todo) => {
+                            return (
+                                <Todo key={todo?.id} todo={todo} fetchData={fetchData} />
+                            )
+                        })
+                        }
+                    </>}
+                {
+                    data.length === 0 && <div className="w-full flex justify-center text-2xl"><p className="text-white">Make a new todo to get started!</p></div>
+                }    
                 <CreateButton />
 
             </div>
