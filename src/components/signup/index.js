@@ -1,7 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../Loader';
+import { Link } from 'react-router-dom';
 
 export default function Signup() {
     const emailRef = useRef();
@@ -36,6 +37,19 @@ export default function Signup() {
 
         setLoading(false);
     }
+
+    useEffect(() => {
+        if (error) {
+            emailRef.current.value = "";
+            passwordRef.current.value = "";
+            confirmPasswordRef.current.value = "";
+            const timer = setTimeout(() => {
+                setError("");
+            }, 4000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [error]);
 
     return (
         <div className="flex justify-center items-center h-full relative mt-9 lg:mt-20 mx-5 lg:mx-0">
@@ -83,6 +97,11 @@ export default function Signup() {
                         </div>
                     </div>
                 )}
+                <div className="mt-5 mb-7 w-full flex justify-center">
+                    <p className='text-white'>
+                        Already a user? <Link to="/login" className="text-green-500">Login</Link>
+                    </p>
+                </div>
             </div>
         </div>
     );

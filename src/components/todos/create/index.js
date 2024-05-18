@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import React, { useState, useEffect } from "react";
+import { addDoc, collection } from "firebase/firestore";
 import { useAuth } from "../../../context/AuthContext";
 import Loader from "../../Loader";
 import { db } from "../../../firebase.config";
@@ -38,6 +38,19 @@ const Create = () => {
             setLoading(false);
         }
     };
+
+    useEffect(() => {
+        if (error) {
+            setContent("");
+            setDateTime("");
+            setTitle("");
+            const timer = setTimeout(() => {
+                setError("");
+            }, 4000);
+
+            return () => clearTimeout(timer);
+        }
+    }, [error]);
 
     return (
         <div className="flex justify-center items-center h-full relative mt-9 lg:mt-20 mx-5 lg:mx-0">
