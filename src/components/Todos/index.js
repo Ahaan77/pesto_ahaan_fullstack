@@ -71,17 +71,17 @@ const Todos = () => {
                 </div>
                 <div className="w-full flex justify-center">
                     <div className="mb-10 w-full lg:w-3/4 flex items-center gap-4">
-                        <div className="lg:mt-0 mt-2 lg:ml-0 lg:flex lg:justify-end text-sm w-full bg-transparent font-bold text-white px-2 py-2 rounded-md border">
+                        <div className="lg:mt-0 mt-2 lg:ml-0 lg:flex lg:justify-end text-sm w-full bg-[#13111c] font-bold text-white px-2 py-2 rounded-md border">
                             <input 
                                 onChange={(e) => handleSearch(e.target.value)} 
-                                className="lg:mt-0 lg:flex lg:justify-end text-sm w-full focus:outline-none bg-transparent font-bold text-white px-2 py-2 rounded-md" 
+                                className="lg:mt-0 lg:flex lg:justify-end text-sm w-full focus:outline-none bg-[#13111c] font-bold text-white px-2 py-2 rounded-md" 
                                 placeholder="Search..." 
                             />
                         </div>
-                        <div className="lg:mt-0 mt-2 lg:ml-0 lg:flex lg:justify-end text-sm w-1/2 lg:w-1/4 bg-transparent font-bold text-white px-2 py-2 rounded-md border">
+                        <div className="lg:mt-0 mt-2 lg:ml-0 lg:flex lg:justify-end text-sm w-1/2 lg:w-1/4 bg-[#13111c] font-bold text-white px-2 py-2 rounded-md border">
                             <select 
                                 onChange={(e) => handleFilter(e.target.value)} 
-                                className="lg:mt-0 lg:flex lg:justify-end text-sm w-full focus:outline-none bg-transparent font-bold text-white px-2 py-2 rounded-md">
+                                className="lg:mt-0 lg:flex lg:justify-end text-sm w-full focus:outline-none bg-[#13111c] font-bold text-white px-2 py-2 rounded-md">
                                 <option value="All">All</option>
                                 <option value="To-do">Todo</option>
                                 <option value="In-Progress">In-Progress</option>

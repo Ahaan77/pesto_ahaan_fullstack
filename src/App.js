@@ -13,14 +13,14 @@ import Signup from './components/Signup';
 
 function App() {
 
-  // useEffect(() => {
-  //   return init();
-  // }, [])
+  useEffect(() => {
+    return init();
+  }, [])
 
   return (
     <div className='font-mono' >
      
-      {/* <canvas
+      <canvas
         style={{
           position: "absolute",
           zIndex: 0,
@@ -28,7 +28,7 @@ function App() {
           height: "90vh"
         }}
         id="canvas"
-      ></canvas> */}
+      ></canvas>
       <Router>
         <AuthProvider>
         <Topbar />

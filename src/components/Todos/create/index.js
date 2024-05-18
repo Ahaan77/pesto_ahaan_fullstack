@@ -14,6 +14,9 @@ const Create = () => {
     const { currentUser } = useAuth();
 
     const addTodo = async () => {
+        if(success){
+            return
+        }
         if (!title || !content || !dateTime) {
             setError("Title, content, and dateTime are required");
             return;
@@ -85,7 +88,7 @@ const Create = () => {
                         <button
                             type="submit"
                             className="px-4 py-2 bg-green-500 hover:bg-green-700 transition duration-200 font-bold text-white rounded-md"
-                            disabled={loading}
+                            disabled={success}
                         >
                             {loading ? <Loader /> : (success ? 'Todo Created Successfully' : 'Create')}
                         </button>
