@@ -2,25 +2,25 @@ import './App.css';
 import "./firebase.config"
 import { useEffect } from 'react';
 import { init } from './background';
-import Topbar from './components/topbar';
+import Topbar from './components/Topbar';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Todos from './components/todos';
-import Create from './components/todos/create';
+import Todos from './components/Todos';
+import Create from './components/Todos/create';
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
-import Login from './components/login';
-import Signup from './components/signup';
+import Login from './components/Login';
+import Signup from './components/Signup';
 
 function App() {
 
-  useEffect(() => {
-    return init();
-  }, [])
+  // useEffect(() => {
+  //   return init();
+  // }, [])
 
   return (
     <div className='font-mono' >
-      <Topbar />
-      <canvas
+     
+      {/* <canvas
         style={{
           position: "absolute",
           zIndex: 0,
@@ -28,15 +28,10 @@ function App() {
           height: "90vh"
         }}
         id="canvas"
-      ></canvas>
-      {/* <Router>
-        <Routes>
-          <Route path="/" element={<Todos />} />
-          <Route path="/createTodo" element={<Create />} />
-        </Routes>
-      </Router> */}
+      ></canvas> */}
       <Router>
         <AuthProvider>
+        <Topbar />
           <Routes>
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
@@ -56,7 +51,6 @@ function App() {
                 </PrivateRoute>
               }
             />
-            {/* <PrivateRoute path="/createTodo" element={<Create />} /> */}
           </Routes>
         </AuthProvider>
       </Router>

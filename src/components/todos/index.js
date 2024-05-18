@@ -1,17 +1,18 @@
-import { getFirestore, addDoc, collection, getDocs, deleteDoc, doc, query, where, onSnapshot } from "firebase/firestore"
+import { collection, query, onSnapshot } from "firebase/firestore"
 import { useEffect, useState } from 'react';
-import CreateButton from "../buttons";
+import CreateButton from "../Buttons";
 import Todo from "./todo";
 import { useAuth } from "../../context/AuthContext";
 import { getName } from "../../util";
+import { db } from "../../firebase.config";
 
 const Todos = () => {
-
-    const db = getFirestore();
+    
     const { currentUser } = useAuth();
     const [data, setData] = useState([])
     const [original, setOriginal] = useState([])
     const [loading, setLoading] = useState(false)
+
 
     useEffect(() => {
         fetchData()
