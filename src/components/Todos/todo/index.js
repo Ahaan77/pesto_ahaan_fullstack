@@ -42,7 +42,7 @@ const Todo = ({ todo, fetchData }) => {
 
     return (
         <div id={todo?.id} className='flex justify-center'>
-            <div style={{ zIndex: 9990, border: `0.4px solid ${statusColor}` }} className={`w-full lg:w-3/4 mb-10 bg-[#181622] rounded-xl`}>
+            <div style={{ zIndex: 9990, border: `0.4px solid ${statusColor}` }} className={`w-full lg:w-3/4 mb-10 bg-[#071a2b] rounded-xl`}>
                 <div className="flex flex-col lg:flex-row  w-full">
                     <div className='mt-5 ml-5 w-full'>
                         <p className='text-xl lg:text-3xl text-white'>{todo?.title}</p>
@@ -66,6 +66,7 @@ const Todo = ({ todo, fetchData }) => {
                 </div>
 
             </div>
+            
         </div>
     )
 

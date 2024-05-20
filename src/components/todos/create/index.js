@@ -57,7 +57,7 @@ const Create = () => {
 
     return (
         <div className="flex justify-center items-center h-full relative mt-9 lg:mt-20 mx-5 lg:mx-0">
-            <div className="lg:w-1/2 w-full bg-[#181622] border border-white border-opacity-30 rounded-xl">
+            <div className="lg:w-1/2 w-full bg-[#071a2b] border border-white border-opacity-30 rounded-xl">
                 <p className='text-3xl text-white mt-5 ml-5'>Create New Todo</p>
                 <form onSubmit={(e) => { e.preventDefault(); addTodo(); }}>
                     <div className="mx-5 mt-5">
