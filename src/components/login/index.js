@@ -7,7 +7,7 @@ import Loader from '../Loader';
 export default function Login() {
     const emailRef = useRef();
     const passwordRef = useRef();
-    const { login } = useAuth();
+    const { login, googleLogin } = useAuth();
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -44,6 +44,7 @@ export default function Login() {
         }
     }, [error]);
 
+
     return (
         <div className="flex justify-center items-center h-full relative mt-9 lg:mt-20 mx-5 lg:mx-0">
             <div className="lg:w-1/2 w-full bg-[#071a2b] border border-white border-opacity-30 rounded-xl">
@@ -65,7 +66,7 @@ export default function Login() {
                             ref={passwordRef}
                         />
                     </div>
-                    <div className="mt-5 mb-7 w-full flex justify-center">
+                    <div className="mt-5 mb-2 w-full flex justify-center">
                         <button
                             type="submit"
                             className="px-4 py-2 bg-green-500 hover:bg-green-700 transition duration-200 font-bold text-white rounded-md"
@@ -74,6 +75,7 @@ export default function Login() {
                             {loading ? <Loader /> : 'Login'}
                         </button>
                     </div>
+                    
                 </form>
                 {error && (
                     <div className="mt-5 mb-7 w-full flex justify-center">
